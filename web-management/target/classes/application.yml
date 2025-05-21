@@ -3,10 +3,10 @@ spring:
     name: web-management
     #資料庫連接資訊
   datasource:
-    url: jdbc:mysql://mysql/management
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 123
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   servlet:
     multipart:
       #最大請求大小
