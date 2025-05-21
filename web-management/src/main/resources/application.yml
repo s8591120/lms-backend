@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: web-management
+    #資料庫連接資訊
+  datasource:
+    url: jdbc:mysql://mysql/management
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123
+  servlet:
+    multipart:
+      #最大請求大小
+      max-request-size: 100MB
+      #最大單個文件大小
+      max-file-size: 10MB
+
+#Mybatis相關配置
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+#事務管理日誌級別
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug;

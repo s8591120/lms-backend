@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.4</version>
+        <!--父工程相對路徑-->
+        <relativePath/> <!-- lookup parent from a repository -->
+    </parent>
+
+    <!--聚合-->
+    <modules>
+        <module>../management-pojo</module>
+        <module>../management-utils</module>
+        <module>../web-management</module>
+    </modules>
+
+    <groupId>com.management</groupId>
+    <artifactId>management-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+<!--        自定義屬性-->
+        <lombok.version>1.18.36</lombok.version>
+        <spring.boot.starter.version>3.4.4</spring.boot.starter.version>
+        <jjwt.api.version>0.12.6</jjwt.api.version>
+        <jjwt.impl.version>0.12.6</jjwt.impl.version>
+        <jjwt.jackson.version>0.12.6</jjwt.jackson.version>
+        <jaxb.api.version>2.3.1</jaxb.api.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${spring.boot.starter.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <!--管理依賴版本-->
+    <dependencyManagement>
+        <!--JWT-->
+        <dependencies>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.impl.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId> <!-- 或使用 jjwt-gson -->
+                <version>${jjwt.jackson.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb.api.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
