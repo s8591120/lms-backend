@@ -20,10 +20,18 @@ public class TokenFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpServletResponse response = (HttpServletResponse)servletResponse;
 
-        String request1URI = request.getRequestURI();
+        String method = request.getMethod();
+        String requestURI = request.getRequestURI();
+
+        //放行預檢請求
+        if("OPTIONS".equalsIgnoreCase(method)){
+            log.info("OPTIONS 預檢請求通過,放行");
+            response.setStatus(HttpServletResponse.SC_OK);
+            return;
+        }
 
         //判斷是否為登錄請求
-        if (request1URI.contains("/login")){
+        if (requestURI.contains("/login")){
             log.info("登錄請求,放行");
             filterChain.doFilter(request, response);
             return;
