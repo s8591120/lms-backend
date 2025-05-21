@@ -23,6 +23,16 @@ public class TokenFilter implements Filter {
         String method = request.getMethod();
         String requestURI = request.getRequestURI();
 
+        String origin = request.getHeader("Origin");
+        if (origin != null){
+            response.setHeader("Access-Control-Allow-Origin", origin);
+            response.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,PUT,DELETE");
+            response.setHeader("Access-Control-Allow-Headers", "Content-Type,token");
+            response.setHeader("Access-Control-Allow-Credentials", "true");
+            response.setHeader("Access-Control-Max-Age", "3600");
+        }
+
+
         //放行預檢請求
         if("OPTIONS".equalsIgnoreCase(method)){
             log.info("OPTIONS 預檢請求通過,放行");
